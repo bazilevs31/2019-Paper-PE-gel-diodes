@@ -193,7 +193,97 @@ There have been limited attempts to tackle the PGDs through molecular level simu
 Here we expand on Molecular Dynamics (MD) computer simulation techniques used by \cite{Li2016,Triandafilidi2018MolecularEffect} to understand the behaviour of PGDs on nanoscale.  The present work combines the continuum studies using PB equations with the large-scale Molecular Dynamics(MD) simulations for a "side-by-side" investigation of the PGDs. By matching the PB results with the corresponding MD curves the present work stress-tests the validity of the PB equations used by Yamamoto et al. Furthermore, this work enhances the PB model using the information obtained via MD simulations. The PB model, theoretically informed through the MD simulations could better describe the experimental results and act as a compass for formulating the material to make better electronic devices.
 
 
+\section{Theoretical concepts for polyelectrolytes}
+\label{theor_background}
+
+Many gels are well soluble in water due to an abundance of polar groups along their backbones. In the simplest representation, they consist of an elastic network of crosslinked polyelectrolytes. The elastic network comprises of both charged macroions and neutral monomers. The quantity of charged macroions depends on the degree of ionization $f$. Every charged macroion is compensated by an itinerant counterion to preserve electroneutrality. 
+
+It seems like counterions would favor to leave the hydrogel and escape into the external solvent as this would increase their translational entropy. However, this would break local electroneutrality. Thus, in case of an immovable gel network the counterions remain within the cell but exert an osmotic pressure onto the surroundings
+%$\Pi_{osm}$, described in eq. \ref{eq:osmideal}.  In the simplest case of high temperature and weak electrostatics, the osmotic pressure of mobile ions can be expressed as a pressure of a uniform cloud of an ideal gas, with no electrostatics playing role.
+\begin{equation}\label{eq:osmideal}
+    \Pi^{osm}_{ideal} = k_B T \frac{N_{ci}}{V}=k_B T \frac{fN_{m}}{V},
+    %= k_B T \frac{f N_m}{R_e^3} =  R T c_m f,
+\end{equation}
+where $N_{ci}$ and $N_m$ are the number of counterions and monomers in the system. If the gel network is stretchable, the osmotic pressure swells the network. The stretching of the chains decreases their entropy, which creates an elastic pressure as illustrated in Fig.~\ref{fig:osmpress}A. The elastic pressure produces mechanical work $\Delta W_{mech}$ due to the expansion of the network.
+
+Besides the mechanical work, entropic forces could potentially break the electroneutrality of the system but only on small length scales $l < R_{ee}$, where $R
+_{ee}$ is the average distance between any two crosslinking nodes. The breaking of electroneutrality produces an electrical potential $\Delta \varphi$, also called as Nernst-Donnan potential, which follows readily from equating the chemical potentials of the counterions of charge $q$ inside and outside of the gel:
+%
+
+\begin{equation}\label{eq:donnanpotential}
+k_B T \ln (c_o/c_i)= q \Delta \varphi + \Delta \mu_{excess} ,
+\end{equation}
+
+where $c_i$ and $c_o$ are the average counterion concentrations inside and outside of the gel and $\mu_{excess}$ is the excess chemical potential due to excluded volume interactions present in the system.
+
+%In the ideal case of a static network $c_2, c_1 = f_2, f_1$ the ionization degrees of the gel. It will be shown that at low temperatures, with low degrees of swelling and small boundary displacement the mechanical work is negligible and could be neglected $\Delta W_{mech} \sim 0$
+
+At low temperatures, electrostatic interactions dominate over thermal energies and eq.~\eqref{eq:osmideal} is no longer valid \cite{Osada2002}.The strength of the electrostatic interaction can be quantified via the Bjerrum length $l_B = k_{Coul} q^2/\varepsilon_{diel} k_B T$, where $\varepsilon_{diel}$ is the dielectric permittivity of the medium, and $k_{Coul}$ is the Coulombic constant. The Bjerrum length corresponds to the distance at which the Coulombic energy equals the thermal energy $k_BT$. According to Manning \cite{Manning_1977}, when $l_B$ becomes larger than the distance $a$ between two consecutive charged monomers, all counterions become bound to their corresponding macroion in a phenomenon called counterion condensation as illustrated in Fig.~\ref{fig:osmpress}B \cite{Mann2005}.
+
+Additionally Manning's theory provides a simple expression for the effective ionization of the gel depending on it's temperature and, hence, the electrostatic strength \cite{Mann2005} becomes 
+
+\begin{equation}\label{eq:mann_explain}
+  f_{eff} =
+  \begin{cases}
+    f & \text{, for $l_b<a$} \\
+    f/(l_b/(b f^{-\nu})) & \text{, for $l_b \geq a$}, \\
+  \end{cases}
+\end{equation}
+where $\nu$ is the Flory parameter and is assumed to be $3/5$.
+
 \section{Methods}
+\label{methods}
+Our simulation setup comprises of a box of 18x4x4 unit cells forming a cubic lattice of crosslinking nodes. The unit cells have lattice constant $l = 50\sigma$ and are connected by polyelectrolyte chains with $N_m = 100$ monomers. Due to the translational symmetry of the system there are three polymer chains per each cell with monomer number density $c = 3 \cdot 100 / 50^3 = 2.4 \cdot 10^{-3}\sigma^{-3}$. A fraction $f$ of the monomers in each chain are ionized, i.e.~they bear a negative charge $q= -1$.  Monomers on the left side of the box are ionized with the ionization degree $f_1$, and monomers on the right side with the degree $f_2 > f_1$.  After the network is created, $N_{ci}$ counterions are inserted into the box at random positions to achieve electroneutrality. Monomers in the network are tethered to static nodes at the left and right boundaries of the simulation box. Periodic boundary conditions (PBC) are employed in lateral directions only. Reflective walls are put at $z=0$ and $z=L_z$ to prevent atoms from escaping the box. Several snapshots illustrating the system are shown in Fig.~\ref{fig:snapshots_all}.
+
+The polyelectrolyte chains are modeled using the coarse-grained Kremer-Grest (KG) bead-spring model \cite{Kremer_1990}. Excluded volume interactions are modeled via a purely repulsive Lennard-Jones (LJ) potential, 
+
+\begin{equation}\label{eq:lj_explain}
+  U^{LJ}(r_{ij}) =
+  \begin{cases}
+    4 \varepsilon\left[\left( \dfrac{\sigma}{r_{ij}}\right)^{12} - \left(\dfrac{\sigma}{r_{ij}}\right)^{6}- U(r_c) \right] & \text{,for $r<r_c$} \\
+    \ 0 & \text{,for $r \geq r_c$} \\
+  \end{cases}
+\end{equation}
+where $r_c = 2^{1/6}\sigma$. The Lennard-Jones parameters $\varepsilon$ and $\sigma$ correspond to the depth of the potential well and the distance at which the unshifted potential is zero, respectively. Both parameters are identical for all species present in the system (backbone monomers and floating counterions) and are used as units of energy and distance. Bonded interactions are modeled with a nonlinear FENE potential,
+
+\begin{equation}\label{eq:fene_explain}
+  U^{FENE}(r) =
+  \begin{cases}
+    - \dfrac{1}{2}\ k_f r_f^2 \  \ln \left( 1 -  \left(\dfrac{r}{r_f}\right)^2\right) & \text{, for $r<r_f$} \\
+    \ \infty & \text{, for $r \geq r_f$} \\
+  \end{cases}
+\end{equation}
+with $k_f =  30 \epsilon/\sigma^2$, $r_f = 1.5 \sigma $ resulting in a mean bond length of $b \sim \sigma$. Ions interact additionally via the Coulomb potential
+\begin{equation}\label{eq:coul_explain}
+    U^{Coul}(r_{ij}) = k_{Coul} \dfrac{-q^2}{\varepsilon_{diel} r_{ij}} = -k_BT l_B/r_{ij},\text{ for $r<r^{el}_c$},
+\end{equation}
+To reduce the computational cost, solvent molecules are treated implicitly through the dielectric constant $\varepsilon_{diel}$.  
+To further optimize the computational performance, the electrostatic cutoff distance was set to $r^{el}_c = 17 \sigma$, above which longer-range electrostatic interactions are calculated via a Particle-Particle-Particle Mesh (PPPM) Ewald solver for slab systems \cite{Yeh_1999, Hockney_1988}.  All simulations were performed in the $NVT$ ensemble, with a timestep of integration $dt = 0.005$ and a PPPM accuracy of $10^{-4}$. Molecular dynamics runs were performed using the LAMMPS code \cite{Plimpton_1995}. The MD trajectories were visualized using the VMD code \cite{Humphrey_1996} and analyzed using the MDAnalysis package 
+\cite{Khoshlessan_2017,Michaud_Agrawal_2011}. The code base employed in the present work is summarized in the PyGels library \cite{Vasilii2018}. All results are reported in reduced simulation units.
+
+To calculate the pressure and energy profiles, the simulation box was divided into $N_{bins}$ parts along the non-periodic z-direction. For every particle in a bin, an individual per-atom virial tensor $\sigma_{ab}^i$ was calculated and averaged across each bin, where $a, b$ could be any of $x, y, z$ and $i$ is the index of the particle.  The per-atom virial tensor in the case of linear polymers with long-range Coulombic interactions is defined as:
+
+\begin{align}
+\begin{split}\label{eq:stress_atom}
+    \sigma_{ab} ={}& - [ m v_a v_b +
+          \frac{1}{2} \sum_{n = 1}^{N_p} (r_{1_a} F_{1_b} + r_{2_a} F_{2_b}) + \\
+         & + \frac{1}{2} \sum_{n = 1}^{N_b} (r_{1_a} F_{1_b} + r_{2_a} F_{2_b}) + 
+          {\rm Kspace}(r_{i_a},F_{i_b}) ]
+\end{split}
+\end{align}
+The first term is a kinetic energy contribution for the given atom. The second term is a pairwise energy contribution, ${\bf r}_1$ and $\bf{r}_2$ are the positions of the two atoms in the pairwise interaction where $N_p$ is the total number of neighbors, and ${\bf F}_1$ and ${\bf F}_2$ are the forces on the two atoms resulting from the pairwise interaction. The third term is a contribution from the covalent bonds, and the last term accounts for long-range Coulombic interactions. This tensor has units of energy and described in detail by Thomson et al. \citep{thompson2009general}. Two sets of pressure profiles were calculated during the simulation run. A lateral pressure profile via $P^{lat}(z)=-( \sigma_{xx}^i + \sigma_{yy}^i)/ 2V^{z_j}_{bin}$ and the pressure component along the z axis $P^{zz}(z)=-(\sigma_{zz}^i)/ V^{z_j}_{bin}$. During the production run, the pressure profile was recorded every $500$ steps and averaged in post-processing. The energy and concentration profiles were calculated in a similar fashion.
+
+To perform the counterion condensation analysis we measured the distances between the gel monomers and counterions. If counterions were within $r_{cut} = 2 \sigma$ of the gel backbone then it was considered to be condensed. The value of $r_{cut}$ was chosen to include the first two peaks of the radial distribution function of the condensed ions. Counterions that were within $r_{cut}$ of more than one backbone monomer were counted only once. The results for the fractions of the condensed atoms were time averaged across the simulation.
+
+
+To calculate the electrostatic potential profiles,  snapshots were saved every $1000$ steps and imported into VMD's built-in PME Poisson solver \cite{Aksimentiev_2005}. The potentials of each snapshot were averaged to obtain a potential profile $\phi(z)$. These curves were fitted to 
+\begin{equation}\label{eq:fitting}
+\phi(z) =  \phi_0 + A \cdot \tanh(-x/x_0)
+\end{equation}
+via the parameters $x_0$, $\phi_0$, $A$. Eq.~\eqref{eq:fitting} arises from solving the Poisson equation in the geometry of two semi-infinite slabs with a potential at the interface ($\varphi(z-) = \varphi(z+)$).
+
+
+
 
 \section{Graphics and tables}
 \subsection{Graphics}
