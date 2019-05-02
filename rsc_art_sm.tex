@@ -193,22 +193,29 @@ Here we expand on Molecular Dynamics (MD) computer simulation techniques used by
 
 \subsection{Polyelectrolyte gels}
 
-Many gels are well soluble in water due to an abundance of polar groups along their backbones. In the simplest representation, they consist of an elastic network of crosslinked polyelectrolytes. The elastic network comprises of both charged macroions and neutral monomers. The quantity of charged macroions depends on the degree of ionization $f$. Every charged macroion is compensated by an itinerant counterion to preserve electroneutrality. It seems like counterions would favor to leave the hydrogel and escape into the external solvent as this would increase their translational entropy. However, this would break local electroneutrality. Thus, in case of an immovable gel network the counterions remain within the cell but exert an osmotic pressure onto the surroundings. Besides the mechanical work, entropic forces could potentially break the electroneutrality of the system but only on small length scales $l < R_{ee}$, where $R
-_{ee}$ is the average distance between any two crosslinking nodes. The breaking of electroneutrality produces an electrical potential $\Delta \varphi$, also called as Nernst-Donnan potential, which follows readily from equating the chemical potentials of the counterions of charge $q$ inside and outside of the gel:
+Many gels are well soluble in water due to an abundance of polar groups along their backbones. In the simplest representation, they consist of an elastic network of cross-linked polyelectrolytes. The elastic network comprises of both charged macro-ions and neutral monomers. The quantity of charged macro-ions depends on the degree of ionization $f$. Every charged macro-ion is compensated by an itinerant counter-ion to preserve electro-neutrality. It seems like counter-ions would favor to leave the hydrogel and escape into the external solvent as this would increase their translational entropy. However, this would break local electro-neutrality. Thus, in case of an immovable gel network the counterions remain within the cell but exert an osmotic pressure onto the surroundings. Besides the mechanical work, entropic forces could potentially break the electro-neutrality of the system but only on small length scales $l < R_{ee}$, where $R
+_{ee}$ is the average distance between any two cross-linking nodes. The breaking of electro-neutrality produces an electrical potential $\Delta \varphi$, also called as Nernst-Donnan potential, which follows readily from equating the chemical potentials of the counterions of charge $q$ inside and outside of the gel:
 
 \begin{equation}\label{eq:donnanpotential}
 k_B T \ln (c_o/c_i)= q \Delta \varphi + \Delta \mu_{excess} ,
 \end{equation}
 
-where $c_i$ and $c_o$ are the average counterion concentrations inside and outside of the gel and $\mu_{excess}$ is the excess chemical potential due to excluded volume interactions present in the system.
+where $c_i$ and $c_o$ are the average counter-ion concentrations inside and outside of the gel and $\mu_{excess}$ is the excess chemical potential due to excluded volume interactions present in the system.
 
 
 
-\subsection{Counterion condensation}
+\subsection{Counter-ion condensation}
 
-At low temperatures, or low dielectric constants electrostatic interactions dominate over thermal energies and classic picture of ion behaviour inside of the gel is no longer valid \cite{Osada2002}.The strength of the electrostatic interaction can be quantified via the Bjerrum length $l_B = k_{Coul} q^2/\varepsilon_{diel} k_B T$, where $\varepsilon_{diel}$ is the dielectric permittivity of the medium, and $k_{Coul}$ is the Coulombic constant. The Bjerrum length corresponds to the distance at which the Coulombic energy equals the thermal energy $k_BT$. According to Manning \cite{Manning_1977}, when $l_B$ becomes larger than the distance $a$ between two consecutive charged monomers, all counterions become bound to their corresponding macroion in a phenomenon called counterion condensation as illustrated in Fig.~\ref{fig:osmpress}B \cite{Mann2005}.
+At low temperatures, or low dielectric constants electrostatic interactions dominate over thermal energies and classic picture of ion behaviour inside of the gel is no longer valid \cite{Osada2002}.The strength of the electrostatic interaction can be quantified via the Bjerrum length $l_B = k_{Coul} q^2/\varepsilon_{diel} k_B T$, where $\varepsilon_{diel}$ is the dielectric permittivity of the medium, and $k_{Coul}$ is the Coulombic constant. The Bjerrum length corresponds to the distance at which the Coulombic energy equals the thermal energy $k_BT$. According to Manning \cite{Manning_1977}, when $l_B$ becomes larger than the distance $a$ between two consecutive charged monomers, all counterions become bound to their corresponding macro-ion in a phenomenon called counter-ion condensation as illustrated in Fig.~\ref{fig:osmpress}B \cite{Mann2005}.
 
-Additionally Manning's theory provides a simple expression for the effective ionization of the gel depending on the Bjerrum length and, hence, the electrostatic strength \cite{Mann2005} becomes 
+Additionally Manning's theory Fig.~\ref{fig:condensation} provides a simple expression for the effective ionization of the gel depending on the Bjerrum length and, hence, the electrostatic strength \cite{Mann2005} becomes 
+
+\begin{figure}[h]
+\centering
+  \includegraphics[width=.45\textwidth]{fig/Condensation_k200_rcut25.pdf}
+  \caption{Counterion condensation as a function of applied electric field and Bjerrum length $l_b$}
+  \label{fig:condensation}
+\end{figure}
 
 \begin{equation}\label{eq:mann_explain}
   f_{eff} =
@@ -217,7 +224,7 @@ Additionally Manning's theory provides a simple expression for the effective ion
     f/(l_b/(b f^{-\nu})) & \text{, for $l_b \geq a$}, \\
   \end{cases}
 \end{equation}
-where $\nu$ is the Flory parameter and is assumed to be $3/5$. In this work, we consider two regimes.  In the first regime at low Bjerrum lengths, the strength of the electrostatic field is lower than the entropic forces. This regime, following \citep{Erbas2015} will be reffered to as weak coupling. Analogously, at high Bjerrum lengths, when the strength of the electrostatic field becomes larger than entropic forces this regime will be referred to as strong coupling. It is worth noting that the gels in external electric fields, may undergo a field-induced de-condensation \citep{Erbas2015}. Hence a careful analysis  has to be done comparing the Manning predictions with the MD simulations.
+where $\nu$ is the Flory parameter and is assumed to be $3/5$. In this work, we consider two regimes.  In the first regime at low Bjerrum lengths, the strength of the electrostatic field is lower than the entropic forces. This regime, following \citep{Erbas2015} will be referred to as weak coupling. Analogously, at high Bjerrum lengths, when the strength of the electrostatic field becomes larger than entropic forces this regime will be referred to as strong coupling. It is worth noting that the gels in external electric fields, may undergo a field-induced de-condensation \citep{Erbas2015}. Hence a careful analysis  has to be done comparing the Manning predictions with the MD simulations.
 
 
 \subsection{Polyelectrolyte Gel Diodes (PGDs)}
@@ -226,33 +233,63 @@ Depending on the sign of the charge of the backbone polyelectrolyte gels could b
 
 As was shown above due to the break of electroneutrality potential drops appear at the interfaces of the gel diode. When the gel is sandwiched between electrodes and voltage is applied, water present in the gel, undergoes an electrolysis process generating H+ and OH- ions on the cathode and anode respectively. The assymetry of the potential drops give birth to the rectifying ability of the gel. Depending on sign of the voltage applied, the diode will either block the electric current or rectify it. To illustrate that, without loss of generality, lets assume a PGD with posititve gel on the left side and negative gel on the right side. In one case (A), when positive voltage is applied an electrode on the left hand side becomes negatively charged, and the electrode on the right hand side becomes positively charged. This creates an electric field that goes from right to left. This electric field forces positive floating ions on the left side to float to the electrode to minimize the electric field inside of the gel. The abundance of the positive ions blocks the OH- groups from penetrating the diode and recombining with water inside of the gel. Analogues situation happens on the anode. In the case B, when negative voltage is applied (Case B). In this case, iterant ions inside of the gel flock from the electrodes  to the interface between the gel, creating a large potential drop there. This allows and forces the OH- and H+ groups to flock to the interface and recombine.
 
-The modelling of the PGD could be divided into two steps. On the first, the system is modelled with no ions created at the interface due to electrolysis. At this step, only static picture of ion distribution is considered. On the second step, electrolysis is added into consideration. Here the ion creation and reconfiguration is modelled dynamically and currents are analyzed as a function of applied voltage. In the present work, we focus on the first step and carefully investigate the ion distrubution due to electric fields, using Poisson Boltzmann (PB) and Molecular Dynamics (MD) models. 
+
+\begin{figure}[h]
+\centering
+  \includegraphics[height=8cm]{fig/diode.pdf}
+  \caption{Schematic representation of the Polyelectrolyte Gel Diode}
+  \label{fig:e0_lb10}
+\end{figure}
+
+The modelling of the PGD could be divided into two steps. On the first, the system is modelled with no ions created at the interface due to electrolysis. At this step, only static picture of ion distribution is considered. On the second step, electrolysis is added into consideration. Here the ion creation and reconfiguration is modelled dynamically and currents are analyzed as a function of applied voltage. In the present work, we focus on the first step and carefully investigate the ion distribution due to electric fields, using Poisson Boltzmann (PB) and Molecular Dynamics (MD) models. 
 \subsubsection{Naive Poisson Boltzmann model}
 
-To model the Polyelectrolyte diode consisting of a positive and negative gel sandwiched between the electrodes, we consider only helf of the system due to the characteristic assymetry of the system. In this model, on the right side of the system one has positively charged backbone with concentration of the fixed charges $c_f  = f \frac{3 N_m}{L^3}$ ($f$ is the ionization of the gel) and floating positive and negative counterions with concentration of $c_0$. Assuming the Boltzmann distribution of the iterant ions and constant distribution of the fixed ions, the charge density could be described as:  
+To model the Polyelectrolyte diode consisting of a positive and negative gel sandwiched between the electrodes, we consider only half of the system due to the characteristic asymmetry of the system. In this model, on the right side of the system one has positively charged backbone with concentration of the fixed charges $c_f  = f \frac{3 N_m}{L^3}$ ($f$ is the ionization of the gel) and floating positive and negative counterions with concentration of $c_0$. Assuming the Boltzmann distribution of the itinerant ions and constant distribution of the fixed ions, the charge density could be described as:  
 
-$$\frac{d^2 \varphi(z)}{dz^2} = \rho_{charges} = 2  (4 \pi l_b c_0) exp(-\varphi) + 2 (-1) (4 \pi l_b c_0) exp(\varphi) - 4 \pi l_b c_f = 8  \pi l_b c_0 sinh(\varphi(z)) -  4 \pi l_b c_f $$
+\begin{equation} \label{eq:pb1}
+\begin{split}
+\frac{d^2 \varphi(z)}{dz^2} &= \rho_{itenarant}(z) +  \rho_{backbone}(z)  = \\ 
+&= 8  \pi l_b c_0 sinh(\varphi(z)) -  4 \pi l_b c_f 
+\end{split}
+\end{equation}
+% \begin{equation}\label{eq:pb1}
+% \frac{d^2 \varphi(z)}{dz^2} &= \rho_{itenarant}(z) +  \rho_{backbone}(z)  = \\ 
+% &= 8  \pi l_b c_0 sinh(\varphi(z)) -  4 \pi l_b c_f 
+% \end{equation}
+% $$\frac{d^2 \varphi(z)}{dz^2} = \rho_{itenarant}(z) +  \rho_{backbone}(z) = 8  \pi l_b c_0 sinh(\varphi(z)) -  4 \pi l_b c_f $$
 
 The parameter $c_0$ is defined, so that $\int_{z=a}^{z=b} c_0 exp(\varphi (z)) = c_f L/2$, where $L$ is the length of the simulation domain. By introducing the inverse Goy-Chapman length $ l_{GC}^{-2} =  k_0^2 = 8 \pi l_b c_0$, as well as $k_f^2 = 4 \pi l_b c_f$, where  $l_b$ is the Bjerrum length.  The PB equation could be rewritten as:
 
-$$\frac{d^2 \varphi(z)}{dz^2} = k_o^2 sinh(\varphi(z)) - k_f^2$$
-Note that parameter $c_0$ is not known \textit{a priori} hence  to solve the equation above an iterative approach must be employed. This equation  We will refer to this equation as a Naive PB equation. 
+\begin{equation}\label{eq:pb2}
+\frac{d^2 \varphi(z)}{dz^2} = k_o^2 sinh(\varphi(z)) - k_f^2
+\end{equation}
+
+% $$\frac{d^2 \varphi(z)}{dz^2} = k_o^2 sinh(\varphi(z)) - k_f^2$$
+Note that parameter $c_0$ is not known \textit{a priori} hence  to solve the equation above an iterative approach must be employed. This equation  We will refer to this equation as a "NaivePB" equation. 
 
 
 \subsubsection{Modified Poisson Boltzmann model}
 
-In the naive PB model effective ionization does not depend on the Bjerrum length. However as was demonstrated by Triandafilidi et al. citep{Triandafilidi2018} in gels upon certain Bjerrum length countrions undergo counterion condensation and effective ioniztion is decreased. Hence in Modified PB model instead of $k_f$, $c_f$, $f$ only effective parameters need to be used:   $k_{f_{eff}}$, $c_{f_{eff}}$, $f_{eff}$ obtained via substritutng $f$ with $f_{eff}$ .
+In the naive PB model effective ionization does not depend on the Bjerrum length. However as was demonstrated by Triandafilidi et al. \citep{Erbas2015,Triandafilidi2018MolecularEffect} increase in Bjerrum length leads to the counter-ion condensation and reduction in the concentration of free itinerant ions. The reduction in effective ionization ($f \to f_{eff}$) can be either predicted via Manning theory of condensation described in Eq.~\ref{eq:mann_explain}, or modelled directly from the MD simulations (Fig.~\ref{fig:condensation}). By substituting $f$ with $f_{eff}$ for calculation of $k_f, c_f \to k_{f_{eff}}$, $c_{f_{eff}}$  in the Eq.~\ref{eq:pb1}.   
+
+
+\begin{figure}[h]
+\centering
+  \includegraphics[height=6cm]{fig/BVP_compare.pdf}
+  \caption{Comparison between 'naive' PB model and modified where ionization is reduced to only free uncondensed counterions in accordance with Manning theory}
+  \label{fig:condensation}
+\end{figure}
 
 \section{Methods}
 \label{methods}
 
 \subsection{Poisson-Boltzmann}
 
-To solve PB model a finite-difference method is used. The equation is discretizied into $N=1000$ points on the half-domain. Mixed boundary conditions are employed. On the left side of the right half-domain ($z=0$) Dirichlet boundary conditions are employed so the electrical potential is  set to zero $\varphi(z=0) = 0$ due to assymetry of the problem. On the right side of the half-domain ($z=L/2$) electrical field is set to specified value $E = E_{set}$. Throughout the present work an open source distribution of the PB solver is used which is adapted from https://github.com/pv/scikits.bvp1lg. The simulation results were checked by comparing the results with an analytical solution for the case of an electrolyte between the electrodes as well as comparison to the Comsol model.
+To solve PB model a finite-difference method is used. The equation is discretizied into $N=1000$ points on the half-domain. Mixed boundary conditions are employed. On the left side of the right half-domain ($z=0$) Dirichlet boundary conditions are employed so the electrical potential is  set to zero $\varphi(z=0) = 0$ due to asymmetry of the problem. On the right side of the half-domain ($z=L/2$) electrical field is set to specified value $E = E_{set}$. Throughout the present work an open source distribution of the PB solver is used which is adapted from https://github.com/pv/scikits.bvp1lg. The simulation results were checked by comparing the results with an analytical solution for the case of an electrolyte between the electrodes as well as comparison to the Comsol model.
 
 
 \subsection{Molecular Dynamics}
-Our simulation setup comprises of a box of 20x3x3 unit cells forming a cubic lattice of crosslinking nodes. The unit cells have lattice constant $l = 50\sigma$ and are connected by polyelectrolyte chains with $N_m = 100$ monomers. Due to the translational symmetry of the system there are three polymer chains per each cell with monomer number density $c = 3 \cdot 100 / 50^3 = 2.4 \cdot 10^{-3}\sigma^{-3}$. A fraction $f$ of the monomers in each chain are ionized. The ionized monomers on the left side of the box bear a negative charge $q= -1$, whereas the chains on the right side of the box bear a positive charge $q= +1$.  After the network is created, $N_{ci}$ counterions bearing positive and negative charges are inserted into the left and right sides of the box respectively. Monomers in the network are tethered to static nodes at the left and right boundaries of the simulation box. Periodic boundary conditions (PBC) are employed in lateral directions only. Reflective walls are put at $z=0$ and $z=L_z$ to prevent atoms from escaping the box. Several snapshots illustrating the system are shown in Fig.~\ref{fig:snapshots_all}.
+Our simulation setup comprises of a box of 20x3x3 unit cells forming a cubic lattice of cross-linking nodes. The unit cells have lattice constant $l = 50\sigma$ and are connected by polyelectrolyte chains with $N_m = 100$ monomers. Due to the translational symmetry of the system there are three polymer chains per each cell with monomer number density $c = 3 \cdot 100 / 50^3 = 2.4 \cdot 10^{-3}\sigma^{-3}$. A fraction $f$ of the monomers in each chain are ionized. The ionized monomers on the left side of the box bear a negative charge $q= -1$, whereas the chains on the right side of the box bear a positive charge $q= +1$.  After the network is created, $N_{ci}$ counterions bearing positive and negative charges are inserted into the left and right sides of the box respectively. Monomers in the network are tethered to static nodes at the left and right boundaries of the simulation box. Periodic boundary conditions (PBC) are employed in lateral directions only. Reflective walls are put at $z=0$ and $z=L_z$ to prevent atoms from escaping the box. Several snapshots illustrating the system are shown in Fig.~\ref{fig:snapshots_all}.
 
 The polyelectrolyte chains are modeled using the coarse-grained Kremer-Grest (KG) bead-spring model \cite{Kremer_1990}. Excluded volume interactions are modeled via a purely repulsive Lennard-Jones (LJ) potential, 
 
@@ -292,85 +329,112 @@ To calculate the pressure and energy profiles, the simulation box was divided in
 \end{align}
 The first term is a kinetic energy contribution for the given atom. The second term is a pairwise energy contribution, ${\bf r}_1$ and $\bf{r}_2$ are the positions of the two atoms in the pairwise interaction where $N_p$ is the total number of neighbors, and ${\bf F}_1$ and ${\bf F}_2$ are the forces on the two atoms resulting from the pairwise interaction. The third term is a contribution from the covalent bonds, and the last term accounts for long-range Coulombic interactions. This tensor has units of energy and described in detail by Thomson et al. \citep{thompson2009general}. Two sets of pressure profiles were calculated during the simulation run. A lateral pressure profile via $P^{lat}(z)=-( \sigma_{xx}^i + \sigma_{yy}^i)/ 2V^{z_j}_{bin}$ and the pressure component along the z axis $P^{zz}(z)=-(\sigma_{zz}^i)/ V^{z_j}_{bin}$. During the production run, the pressure profile was recorded every $500$ steps and averaged in post-processing. The energy and concentration profiles were calculated in a similar fashion.
 
-Analogosly, to calculate the electrostatic field profiles the simulation box was divided into $N_{bins}$ parts along the non-periodic z-direction. For every particle in a bin, an individual per-atom Coulombic force $F^i_{coul}$ was calculated and averaged across each bin, where $i$ is the index of the particle. To calculate only the Coulombic component of the force, first a production run has been performed and posititions of every particle was saved every 100 timesteps ($0.5\tau$). Next, a post-processing simulation rerun has been employed where forces and energies of the particles have been calculated. Here, the parameters of the LJ, FENE  interactions were put to zero, so only the Coulombic component was considered. 
+Analogously, to calculate the electrostatic field profiles the simulation box was divided into $N_{bins}$ parts along the non-periodic z-direction. For every particle in a bin, an individual per-atom Coulombic force $F^i_{coul}$ was calculated and averaged across each bin, where $i$ is the index of the particle. To calculate only the Coulombic component of the force, first a production run has been performed and positions of every particle was saved every 100 timesteps ($0.5\tau$). Next, a post-processing simulation rerun has been employed where forces and energies of the particles have been calculated. Here, the parameters of the LJ, FENE  interactions were put to zero, so only the Coulombic component was considered. 
 
-To perform the counterion condensation analysis we measured the distances between the gel monomers and counterions. If counterions were within $r_{cut} = 2 \sigma$ of the gel backbone then it was considered to be condensed. The value of $r_{cut}$ was chosen to include the first two peaks of the radial distribution function of the condensed ions. Counterions that were within $r_{cut}$ of more than one backbone monomer were counted only once. The results for the fractions of the condensed atoms were time averaged across the simulation.
-
-
+To perform the counterion condensation analysis we measured the distances between the gel monomers and counterions. If counterions were within $r_{cut} = 2 \sigma$ of the gel backbone then it was considered to be condensed. The value of $r_{cut}$ was chosen to include the first two peaks of the radial distribution function of the condensed ions. Counter-ions that were within $r_{cut}$ of more than one backbone monomer were counted only once. The results for the fractions of the condensed atoms were time averaged across the simulation.
 
 
-\section{Graphics and tables}
-\subsection{Graphics}
-Graphics should be inserted on the page where they are first mentioned (unless they are equations, which appear in the flow of the text).\cite{Cotton1999}
+
+
+\section{Results}
+To create a reliable PB model for PE gel diode that will mimic the MD results we first need to understand the behavior of PE gel at different Bjerrum lengths and strengths of applied electric field. Thus the analysis of PE gel will begin with the analysis of counter-ion condensation as a function of Bjerrum length $l_b$ and applied electric field $E$. Then we will stress test the "naive" PB model by comparing it with the MD results. After that we will modify the PB model to better match the MD results.
+
+\subsection{Counter-ion condensation}
+To analyze the counter-ion condensation we compare the effective ionization $f_{eff}$ obtained from the MD simulation with the Manning prediction given by Eq.~\eqref{eq:mann_explain} (Fig.~\ref{fig:condensation}). Effective ionization was calculated by directly analyzing the number of condensed counterions and it as a function of Bjerrum length and the strength of the applied electric field. As seen from Fig.~\ref{fig:condensation} MD data points are in a excellent agreement with the Manning prediction in the case of low Bjerrum lengths, but is different at  higher Bjerrum lengths. At higher Bjerrum lengths Manning model predicts significantly lower effective ionization than the MD result. The discrepancies are possibly due to the limitation of the Manning model. Originally, the Manning model was derived for a system of an infinite, straight rod and floating counter-ions. Hence works best in the limit of long straight chains that are longer than 100 monomers \cite{Erbas:2015jpa,Erbas:2016do,Li2016}. In this simulation, however, PE chains were constraint between cross-link nodes that were $50 \sigma$, that reduced the effective length of the chain to 50 monomers. Interestingly, no de-condensation was observed due to the applied electric field. Possibly, this occurred since the strengths of electric fields were below the threshold reported to be $E^{*}\sim 10^{0} - 10^{1}$ by \citep{Li2016IonicHydrogels}. Our simulations showed that subjecting the diode to fields stronger than the de-condensation limit breaks the diode, and hence this regime will not be considered in this work.
+
+\subsection{Comparison of "naive" PB model with MD results}
+\subsubsection{Weak coupling/no applied field ($l_b=1, E=0$)}
+
+We start our comparison of naive PB model with the simplest scenario of no applied electric field, and weak coupling (i.e. low Bjerrum lengths) Fig.~\ref{fig:e0_lb1}. The top part of the Fig.~\ref{fig:e0_lb1} shows charge density profile in the diode. In the "naive" Poisson Boltzmann (PB) model the gel concentration is modeled as a constant $c_f$ and is shown in green solid line. The distribution of itinerant ions, shown in blue (for negatively charged ions) and red (for positively charged ions) follows Boltzmann distribution with the potential that is self-consistent with the PB equation. It raises from value $c_0$ at the interface between the gels to $c_f$ in the bulk of the gel. The width of the transition region is determined by Gouy-Chapman length $k_0^{-1}=(8 \pi l_b c_0)^{-1/2}$ which is a function of ionization and Bjerrum length.  Dashed lines illustrate the concentration profile obtained from MD simulation (after running neighbor averaging throughout the profile except the interfaces). The results from PB model and MD simulation agree in the bulk region of the diode for both itinerant and backbone ions (Fig.~\ref{fig:e0_lb1}). At the boundaries and interface, however, the curves show different behaviour. At the interface between the gels (center of the diode) MD density profiles for itinerant ions match the PB model, however the MD gel ion density values are significantly higher than the PB prediction. At the outside boundaries of the diode we see a constant density values for PB model, and decrease in density for the MD simulation. 
+
+The bottom part of the Fig.~\ref{fig:e0_lb1} shows the spatial profile of the total electric field experienced by all ions in the system. The solid line shows the PB solution for the electric field profile. It is zero at the diode boundaries and in the bulk of the gel, and has a negative dip at the interface between two gels. The value of the electric field at the boundaries of the diode comes from the Von-Neumann boundary conditions ($E(z/l_z = \pm 1) = 0$). The zero field in the bulk of the gel shows that gel acts as a conductor equilibrating the electrical field inside of it. At the same time, the dip between the electrodes comes from the incomplete charge neutralization in the transition region between the gels. The width of the dip is again determined by the Gouy-Chapman length $k_0^{-1}=(8 \pi l_b c_0)^{-1/2}$. The dashed line in Fig.~\ref{fig:e0_lb1} shows the MD profile of the electric field. The MD data follows the PB prediction throughout the gel except the the interfaces. Unlike the PB solution profile that has a single peak at the interface, the MD simulation profile presents multiple peaks. 
+
+The multiple peaks arise from the peaks in the gel ion concentration profiles. In the PB model gel backbone ion density are considered as a constant, uniform cloud of charges that are unable to move. In the MD model, however,  the gels still have the flexibility to interact and move, although to lesser degree than the itinerant ions. Due to this interaction the gels at the interface coalesce, creating two interfaces between them and the bulk of the gel as seen from the top part of the Fig.~\ref{fig:e0_lb1}. The interfaces created by the gels produce multiple peaks in the electric field profile due to the incomplete charge neutralization in the transition regions.
+ 
 
 \begin{figure}[h]
 \centering
-  \includegraphics[height=3cm]{example1}
-  \caption{An example figure caption \textendash\ the image is from the \textit{Soft Matter} cover gallery.}
-  \label{fgr:example}
+  \includegraphics[height=6cm]{fig/Compare_E00_lb1.pdf}
+  \caption{Top: Ion spatial density profile; bottom: spatial electric field profile for $E=0.0, l_b=1$. Blue: negatively charged itinerant ions; red: positively charged itinerant ions; green: gel back bone ions. Solid line: regular "naive" Poisson Boltzmann solution; dashed line: Molecular Dynamics profiles.}
+  \label{fig:e0_lb1}
 \end{figure}
 
-\begin{figure*}
- \centering
- \includegraphics[height=3cm]{example2}
- \caption{An image from the \textit{Soft Matter} cover gallery, set as a two-column figure.}
- \label{fgr:example2col}
-\end{figure*}
+\subsubsection{Strong coupling/no applied field ($l_b=10, E=0$)}
+% What we do?
+We now move to the case with higher strength of electrostatic interactions and higher Bjerrum lengths, while still keeping the electric field at zero (Fig.~\ref{fig:e0_lb10}). As discussed before, in this regime a fraction of itinerant ions become strongly coupled to their respective backbone ions, which leads to the reduction of effective ionization of the gel (Fig.~\ref{fig:condensation}). In this case, the PB curves for concentration and electric field remain similar to the weak coupling regime throughout the gel except the interface in the middle of the diode. At the interface of the gel, however, the depth and width of the peak significantly change (Fig.~\ref{fig:e0_lb10}). The interface becomes narrower and deeper, since the size of the transition region is proportional to the Gouy-Chapman length $k_0^{-1}$ which reversely proportional to the Bjerrum length $k_0^{-1}=(8 \pi l_b c_0)^{-1/2}$.  
 
-\subsection{Tables}
-Tables typeset in RSC house style do not include vertical lines. Table footnote symbols are lower-case italic letters and are typeset at the bottom of the table. Table captions do not end in a full point.\cite{Arduengo1992,Eisenstein2005}
+The MD simulation data, shown in Fig.~\ref{fig:condensation} in dashed line presents a different picture. It shows a wider concentration profiles, with less itinerant ion concentration at $z=0$ and high concentration in the peaks adjacent to the interface. Interestingly, the concentration of itinerant ions near peaks practically mirrors the concentration of the backbone ions shown in green. The electric field profile  is also significantly different than the PB solution. The MD data in the case of strong coupling remains qualitatively similar to the weak coupling limit, but shows  shallower peaks. 
+
+The discrepancy between the MD results and PB solution is not counter-intuitive. At higher Bjerrum lengths we expect counter-ions to tightly bind to their respective backbone ions and don't contribute to the total electric field. Since the peaks in the electric field profile occur due to the incomplete charge neutralization, which is reduced due to the counter-ion condensation we see smaller peaks in the MD simulations.
+% Why there is a dip? explain why and connect it with condensation and free ions.
+% Since the gel in Fig.~\ref{fig:e0_lb1} is in the weak coupling regime counterions don't follow the density, which could be guessed intuitively.  
 
 
-\begin{table}[h]
-\small
-  \caption{\ An example of a caption to accompany a table}
-  \label{tbl:example}
-  \begin{tabular*}{0.48\textwidth}{@{\extracolsep{\fill}}lll}
-    \hline
-    Header one (units) & Header two & Header three \\
-    \hline
-    1 & 2 & 3 \\
-    4 & 5 & 6 \\
-    7 & 8 & 9 \\
-    10 & 11 & 12 \\
-    \hline
-  \end{tabular*}
-\end{table}
 
-Adding notes to tables can be complicated.  Perhaps the easiest method is to generate these manually.\footnote[4]{Footnotes should appear here. These might include comments relevant to but not central to the matter under discussion, limited experimental and spectral data, and crystallographic data.}
+\begin{figure}[h]
+\centering
+  \includegraphics[height=6cm]{fig/Compare_E00_lb10.pdf}
+  \caption{Top: Ion spatial density profile; bottom: spatial electric field profile for $E=0.0, l_b=10$. Blue: negatively charged itinerant ions; red: positively charged itinerant ions; green: gel back bone ions. Solid line: regular "naive" Poisson Boltzmann solution; dashed line: Molecular Dynamics profiles.}
+  \label{fig:e0_lb10}
+\end{figure}
 
-\begin{table*}
-\small
-  \caption{\ An example of a caption to accompany a table \textendash\ table captions do not end in a full point}
-  \label{tbl:example2}
-  \begin{tabular*}{\textwidth}{@{\extracolsep{\fill}}lllllll}
-    \hline
-    Header one & Header two & Header three & Header four & Header five & Header six  & Header seven\\
-    \hline
-    1 & 2 & 3 & 4 & 5 & 6  & 7\\
-    8 & 9 & 10 & 11 & 12 & 13 & 14 \\
-    15 & 16 & 17 & 18 & 19 & 20 & 21\\
-    \hline
-  \end{tabular*}
-\end{table*}
 
-\section{Equations}
 
-Equations can be typeset inline \textit{e.g.}\ $ y = mx + c$ or displayed with and without numbers:
+\subsubsection{Weak coupling/non-zero electric field $l_b=1, E=\pm0.1$}
+Having looked at the behaviour of the gel in the simple case of no external field, we now move to the case where an electric field is applied to atoms throughout the gel. This regime occurs in the operational regime of the diode, when it is sandwiched between two electrodes. In our system the electric field is applied to all ions in the system through modification of their equations of motion. We will start with the case of weak coupling where the Coulombic interactions are weaker than the existing entropic forces present in the system (Fig.~\ref{fig:e01_lb1,fig:e-01_lb1}). and subject the system to the electric fields $E= \pm 0.1~[\varepsilon/(e \sigma)]$. The positive values of electric field push the two halves of the diode away from the center, whereas the negative value squeezes the halves and saturate the interface between the gels.
 
- \[ A = \pi r^2 \]
+In the case of positive electric field (Fig.~\ref{fig:e01_lb1}) we observe that the concentration of the itinerant ions changes at the interface when compared to the zero field regime. Without the loss of generality we will concentrate here on the left side of the gel with negatively charged backbone ions, positively charged counter-ions referred to as "majority ions" as well as some positively charged itinerant ions that have "migrated" from the right side that will be referred to as "minority ions." The PB solutions shows that the concentration of the "majority" itinerant ions is reduced and the concentration of the "minority" ions is increased. The concentration profile at the interface between the gels remains identical to the regime with no electric field applied. This leads to the electric field profile  remain similar to the zero-field regime, however the sides of the electrical field experience an increase in electric field. In the case of the negative electric field (Fig.~\ref{fig:e-01_lb1}) we also observe the change in the PB solution profiles. However, in this case the density of the "majority" itinerant ions is increased and the concentration of the "minority" ions remains similar to the no-field regime. Molecular Dynamics simulations shows a similar trend. The electric field profiles follow the PB predictions, however the density profiles at the interface produce a discrepancy due to the gel ion movement.
 
-\begin{equation}
-  \frac{\gamma}{\epsilon x} r^2 = 2r
-\end{equation}
 
-You can also put lists into the text. You can have bulleted or numbered lists of almost any kind. 
-The \texttt{mhchem} package can also be used so that formulae are easy to input: \texttt{\textbackslash ce\{H2SO4\}} gives \ce{H2SO4}. 
 
-For footnotes in the main text of the article please number the footnotes to avoid duplicate symbols. \textit{e.g.}\ \texttt{\textbackslash footnote[num]\{your text\}}. The corresponding author $\ast$ counts as footnote 1, ESI as footnote 2, \textit{e.g.}\ if there is no ESI, please start at [num]=[2], if ESI is cited in the title please start at [num]=[3] \textit{etc.} Please also cite the ESI within the main body of the text using \dag.
+\begin{figure}[h]
+\centering
+  \includegraphics[height=6cm]{fig/Compare_E01_lb1.pdf}
+  \caption{Top: Ion spatial density profile; bottom: spatial electric field profile for $E=0.1, l_b=1$. Blue: negatively charged itinerant ions; red: positively charged itinerant ions; green: gel back bone ions. Solid line: regular "naive" Poisson Boltzmann solution; dashed line: Molecular Dynamics profiles.}
+  \label{fig:e01_lb1}
+\end{figure}
+
+\begin{figure}[h]
+\centering
+  \includegraphics[height=6cm]{fig/Compare_E-01_lb1.pdf}
+  \caption{Top: Ion spatial density profile; bottom: spatial electric field profile for $E=-0.1, l_b=1$. Blue: negatively charged itinerant ions; red: positively charged itinerant ions; green: gel back bone ions. Solid line: regular "naive" Poisson Boltzmann solution; dashed line: Molecular Dynamics profiles.}
+  \label{fig:e-01_lb1}
+\end{figure}
+
+\subsubsection{Strong coupling/non-zero electric field $E=\pm 0.1$}
+
+With increasing of the Bjerrum length, electrostatic effects present in our system become more dominant than the entropic forces present in the system (Fig.~\ref{fig:e01_lb10}, \ref{fig:e-01_lb10}). In the case of naive PB model nothing counterintuitive happens. Both sides of the gel experience increase in changes in the electric field as was observed in the previous case of weak coupling, the interface between the gels becomes narrower. The situation changes drastically in the MD model. In the case of the positive electric field, which "pulls" the gels away from each other the density profile experience large peaks on the sides of the gel, we also see the disappearence of the central peak at the interface. The itenerant ions follow closely the gel density. In the case of the negative electric field the density profiles at the interface between the gels remain the same as in the weak coupling regime, however the discrepancy between the MD and PB results increases. This happens due to the stronger pull of the gel ions away from the diode boundaries.
+% BVP Nothing much cahnges 
+% MD
+% This leads to 
+% field is more important, counterion condensation happens.
+% outside region
+% inside region
+% Density complete change of picture, electric field remain similar 
+
+
+
+\begin{figure}[h]
+\centering
+  \includegraphics[height=6cm]{fig/Compare_E01_lb10.pdf}
+  \caption{Top: Ion spatial density profile; bottom: spatial electric field profile for $E=0.1, l_b=10$. Blue: negatively charged itinerant ions; red: positively charged itinerant ions; green: gel back bone ions. Solid line: regular "naive" Poisson Boltzmann solution; dashed line: Molecular Dynamics profiles.}
+  \label{fig:e01_lb10}
+\end{figure}
+
+\begin{figure}[h]
+\centering
+  \includegraphics[height=6cm]{fig/Compare_E-01_lb10.pdf}
+  \caption{Top: Ion spatial density profile; bottom: spatial electric field profile for $E=-0.1, l_b=10$. Blue: negatively charged itinerant ions; red: positively charged itinerant ions; green: gel back bone ions. Solid line: regular "naive" Poisson Boltzmann solution; dashed line: Molecular Dynamics profiles.}
+  \label{fig:e-01_lb10}
+\end{figure}
+\subsection{Comparison of PB models with MD simulation}
+
 
 \section{Conclusions}
-The conclusions section should come at the end of article. For the reference section, the style file \texttt{rsc.bst} can be used to generate the correct reference style.
+% Discuss what models work the best for our MD data
+% As a result we see
+% How BVP works compared to the MD
+
 %%%END OF MAIN TEXT%%%
 
 %The \balance command can be used to balance the columns on the final page if desired. It should be placed anywhere within the first column of the last page.
@@ -381,7 +445,7 @@ The conclusions section should come at the end of article. For the reference sec
 %\renewcommand\refname{Notes and references}
 
 %%%REFERENCES%%%
-\bibliography{rsc2} %You need to replace "rsc" on this line with the name of your .bib file
+\bibliography{rsc} %You need to replace "rsc" on this line with the name of your .bib file
 \bibliographystyle{rsc} %the RSC's .bst file
 
 \end{document}
